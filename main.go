@@ -21,7 +21,7 @@ func toRPN(expression string) ([]string, error) {
 	var output []string
 	var operators []rune
 
-	// Создаем мапу операций и их приоритетов в виде индексов
+	// Создаем карту операций и их приоритетов в виде индексов
 	precedence := map[rune]int{
 		'*': 3,
 		'/': 3,
@@ -45,7 +45,7 @@ func toRPN(expression string) ([]string, error) {
 			output = append(output, expression[i:j])
 			i = j - 1
 
-		// Если символ это знак операции то добавляем его в стек output и удаляем из буферного слайса operators
+		// Если символ это знак операции то добавляем его в стек output и удаляем из буферного слайс-а operators
 		case char == '+' || char == '-' || char == '*' || char == '/':
 			for len(operators) > 0 && precedence[operators[len(operators)-1]] >= precedence[char] {
 				output = append(output, string(operators[len(operators)-1]))
@@ -73,7 +73,7 @@ func toRPN(expression string) ([]string, error) {
 		}
 	}
 
-	// Разбираем оставшиеся символы операций из слайса operators
+	// Разбираем оставшиеся символы операций из слайс-а operators
 	for len(operators) > 0 {
 		if operators[len(operators)-1] == '(' {
 			return nil, fmt.Errorf("mismatched parentheses")
